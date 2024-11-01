@@ -1,0 +1,1 @@
+<p>the quick brown fox jumps over the lazy dog!</p><?php /**PATH C:\xampp\htdocs\IPT\Laravel\simpleApi\resources\views/personal.blade.php ENDPATH**/ ?>
