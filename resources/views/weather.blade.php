@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <!-- Import Google Font for Japanese-inspired style -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet">
 
     <style>
         body {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Sawarabi Mincho', serif;
+            /* Japanese-inspired font */
             margin: 0;
             padding: 0;
             background-image: url('https://i.pinimg.com/originals/76/a0/b9/76a0b92e3b694de08e9d637676478bc1.gif');
@@ -22,11 +22,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: #333;
+            color: #fff;
         }
 
         h1 {
-            font-family: 'Noto Sans JP', sans-serif;
             text-align: center;
             color: #fff;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
@@ -81,45 +80,12 @@
             vertical-align: middle;
             margin-right: 10px;
         }
-
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: pointer;
-        }
-
-        .tooltiptext {
-            visibility: hidden;
-            width: 200px;
-            background-color: #555;
-            color: #fff;
-            text-align: center;
-            padding: 5px;
-            border-radius: 4px;
-            position: absolute;
-            z-index: 1;
-            bottom: 125%;
-            /* Adjust positioning */
-            left: 50%;
-            margin-left: -100px;
-            /* Center the tooltip */
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .tooltip:hover .tooltiptext {
-            visibility: visible;
-            opacity: 1;
-        }
     </style>
 </head>
 
 <body>
-
     <div class="table-container">
-        <h1>Weather Information in Manila</h1> <input type="text" id="search" placeholder="Search location..."
-            onkeyup="filterTable()">
-
+        <h1>Weather Information in Manila</h1>
         <table>
             <thead>
                 <tr>
@@ -147,51 +113,6 @@
             </tbody>
         </table>
     </div>
-    <script>
-        // Replace 'YOUR_API_KEY' with your OpenWeatherMap API key
-        async function fetchWeatherData() {
-            const response = await fetch('https://api.openweathermap.org/data/2.5/weather?q=Manila&appid=YOUR_API_KEY');
-            const data = await response.json();
-            const weatherCondition = data.weather[0].main.toLowerCase();
-            setWeatherBackground(weatherCondition);
-        }
-
-        function setWeatherBackground(condition) {
-            const body = document.body;
-            switch (condition) {
-                case 'clear':
-                    body.style.backgroundImage = "url('path/to/clear-sky.gif')";
-                    break;
-                case 'rain':
-                    body.style.backgroundImage = "url('path/to/rainy.gif')";
-                    break;
-                case 'snow':
-                    body.style.backgroundImage = "url('path/to/snow.gif')";
-                    break;
-                default:
-                    body.style.backgroundImage = "url('path/to/default-weather.gif')";
-            }
-            body.style.backgroundSize = 'cover';
-            body.style.backgroundRepeat = 'no-repeat';
-        }
-
-        fetchWeatherData();
-
-        function filterTable() {
-            const searchInput = document.getElementById('search').value.toLowerCase();
-            const table = document.querySelector('table tbody');
-            const rows = table.getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const locationCell = rows[i].getElementsByTagName('td')[0];
-                if (locationCell) {
-                    const location = locationCell.textContent || locationCell.innerText;
-                    rows[i].style.display = location.toLowerCase().includes(searchInput) ? '' : 'none';
-                }
-            }
-        }
-
-    </script>
 </body>
 
 </html>
