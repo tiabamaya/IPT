@@ -131,20 +131,19 @@
                 </tr>
             </thead>
             <tbody>
-                <?php $__currentLoopData = $weatherData["results"]; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $result): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                @foreach ($weatherData["results"] as $result)
                     <tr>
                         <td>
-                            <img class="flag" src="https://flagcdn.com/<?php echo e(strtolower($result['country_code'])); ?>.svg"
-                                alt="<?php echo e($result['country_code']); ?> flag">
-                            <?php echo e($result["name"]); ?>
-
+                            <img class="flag" src="https://flagcdn.com/{{ strtolower($result['country_code']) }}.svg"
+                                alt="{{ $result['country_code'] }} flag">
+                            {{ $result["name"] }}
                         </td>
-                        <td><?php echo e($result["longitude"]); ?></td>
-                        <td><?php echo e($result["latitude"]); ?></td>
-                        <td><?php echo e($result["elevation"]); ?></td>
-                        <td><?php echo e($result["feature_code"]); ?></td>
+                        <td>{{ $result["longitude"] }}</td>
+                        <td>{{ $result["latitude"] }}</td>
+                        <td>{{ $result["elevation"] }}</td>
+                        <td>{{ $result["feature_code"] }}</td>
                     </tr>
-                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -195,4 +194,4 @@
     </script>
 </body>
 
-</html><?php /**PATH C:\xampp\htdocs\IPT\Laravel\simpleApi\IPT\resources\views/weather.blade.php ENDPATH**/ ?>
+</html>
